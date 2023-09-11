@@ -8,7 +8,7 @@ body {
     background-color: #182128;
     color: white;
     font-family: 'Alexandria', sans-serif;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 ::-webkit-scrollbar {
