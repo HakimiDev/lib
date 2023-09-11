@@ -8,17 +8,20 @@
                 </svg>
             </NuxtLink>
         </div>
-        <h2>Name: {{ anime.data.title }}</h2>
-        <h2>ID: {{ anime.data.mal_id }}</h2>
-        <img class="max-w-[300px]" :src="anime.data.images.jpg.image_url" alt="animeimg" loading="lazy">
-        <p>{{ anime.data.synopsis.replace('[Written by MAL Rewrite]', '') }}</p>
+        <h2>Name: {{ anime.title }}</h2>
+        <h2>ID: {{ anime.mal_id }}</h2>
+        <img class="max-w-[300px]" :src="anime.images?.jpg.image_url" alt="animeimg" loading="lazy">
+        <p>{{ anime.synopsis?.replace('[Written by MAL Rewrite]', '') }}</p>
     </div>
 </template>
 
 <script setup>
 const { id } = useRoute().params;
 const url = "https://api.jikan.moe/v4/anime/" + id;
-
-const { data: anime } = await useFetch(url, { key: id });
-
+const anime = ref({});
+onMounted(async () => {
+    await nextTick()
+    const { data: animeData } = await useFetch(url);
+    anime.value = animeData.value.data;
+});
 </script>

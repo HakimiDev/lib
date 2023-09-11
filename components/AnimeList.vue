@@ -1,36 +1,21 @@
 <template>
-    <ul class="grid grid-cols-3 gap-5 px-3 place-items-center p-1 py-2 h-[90vh] overflow-y-auto">
+    <ul class="grid grid-cols-3 gap-5 px-3 place-items-center p-1 py-2 fixed top-0 h-screen pt-20 overflow-y-auto overflow-x-hidden max-xs:grid-cols-2">
         <AnimeCard v-for="(anime, index) in list" :anime="anime" :key="index" />
         <Observer v-if="!isLoadMore" @intersect="loadMore" />
+        <div class="text-primary-50">Loading</div>
     </ul>
     <div :class="isLoadMore ? 'bottom-0' : 'bottom-[-100%]'"
-        class="flex justify-center items-center min-w-full p-1 transition-start duration-1000 fixed bottom-0 bg-primary-50">
+        class="flex justify-center items-center min-w-full p-4 transition-start duration-500 fixed bg-primary-50 rounded-t-lg">
         <div class="loader"></div>
     </div>
 </template>
 
 <script setup>
-const { $AOS } = useNuxtApp();
-
-let page = 1;
-const url = 'https://api.jikan.moe/v4/top/anime'
-
+const url = 'https://api.jikan.moe/v4/top/anime';
 const list = ref([]);
-
-const { data: animeList } = await useFetch(url, {
-    params: {
-        page,
-        limit: 24,
-        order_by: 'rank',
-        type: 'tv'
-    },
-    key: page.toString(),
-    lazy: true
-});
-
-list.value = animeList._rawValue.data;
-
 const isLoadMore = ref(false);
+let page = 1;
+
 const loadMore = async () => {
     if (isLoadMore.value) return;
     isLoadMore.value = true;
@@ -51,6 +36,22 @@ const loadMore = async () => {
         isLoadMore.value = false;
     }, 350);
 };
+
+onMounted(async () => {
+    await nextTick();
+    const { data: animeList } = await useFetch(url, {
+        params: {
+            page,
+            limit: 24,
+            order_by: 'rank',
+            type: 'tv'
+        },
+        key: page.toString(),
+        lazy: true
+    });
+
+    list.value = animeList.value.data;
+});
 </script>
 
 <style scoped>

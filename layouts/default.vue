@@ -1,7 +1,7 @@
 <template>
     <div dir="ltr" lang="en">
         <Header />
-        <main class="container min-w-full mt-20">
+        <main class="container min-w-full">
             <slot />
         </main>
     </div>
