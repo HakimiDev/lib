@@ -1,5 +1,5 @@
 <template>
-    <ul class="grid grid-cols-3 gap-5 px-3 place-items-center pt-20 fixed top-0 h-screen overflow-y-auto overflow-x-hidden max-xs:grid-cols-2">
+    <ul class="grid grid-cols-3 gap-5 px-3 place-items-center overflow-hidden max-xs:grid-cols-2">
         <AnimeCard v-for="(anime, index) in list" :anime="anime" :key="index" />
         <Observer v-if="!isLoadMore" @intersect="loadMore" />
         <div class="text-primary-50">Loading</div>

@@ -1,5 +1,5 @@
 <template>
-    <header class="min-w-full sticky top-0 z-10 flex justify-center bg-transparent p-3">
+    <header class="min-w-full sticky top-0 z-10 flex justify-center bg-primary-50/50 p-3">
         <Layout class="w-full sm:w-[70%] flex justify-between items-center p-4 rounded-lg uppercase">
             <div v-if="path == '/anime'" class="flex gap-2">
                 <div class="cursor-pointer transform transition duration-500 hover:bg-gray-700 rounded-full p-1">
