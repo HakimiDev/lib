@@ -1,5 +1,5 @@
 <template>
-    <ul class="grid grid-cols-3 gap-5 px-3 place-items-center overflow-hidden max-xs:grid-cols-2">
+    <ul class="grid grid-cols-3 gap-5 px-3 place-items-center overflow-x-hidden max-xs:grid-cols-2">
         <AnimeCard v-for="(anime, index) in list" :anime="anime" :key="index" />
         <Observer v-if="!isLoadMore" @intersect="loadMore" />
         <div class="text-primary-50">Loading</div>
@@ -11,46 +11,64 @@
 </template>
 
 <script setup>
+import { list, page, _lastScroll, lastScroll } from "../js/animeStore";
+
 const url = 'https://api.jikan.moe/v4/top/anime';
-const list = ref([]);
 const isLoadMore = ref(false);
-let page = 1;
 
 const loadMore = async () => {
-    if (isLoadMore.value) return;
-    isLoadMore.value = true;
-    page++;
-    const { data: animeList } = await useFetch(url, {
-        params: {
-            page,
-            limit: 24,
-            order_by: 'rank',
-            type: 'tv'
-        },
-        key: page.toString(),
-        lazy: true
-    });
-    list.value.push(...animeList._rawValue.data);
+    try {
+        if (isLoadMore.value) return;
+        isLoadMore.value = true;
+        page.value++;
+        const { data: animeList } = await useFetch(url, {
+            params: {
+                page: page.value,
+                limit: 24,
+                order_by: 'rank',
+                type: 'tv'
+            },
+            key: page.value.toString(),
+            lazy: true
+        });
 
-    setTimeout(() => {
-        isLoadMore.value = false;
-    }, 350);
+        if (animeList.value.data) list.value.push(...animeList.value.data);
+
+        setTimeout(() => {
+            isLoadMore.value = false;
+        }, 350);
+    } catch {
+        setTimeout(() => {
+            isLoadMore.value = false;
+        }, 350);
+    }
+
 };
 
 onMounted(async () => {
+    window.onscroll = () => {
+        _lastScroll.value = window.pageYOffset;
+    };
+
     await nextTick();
     const { data: animeList } = await useFetch(url, {
         params: {
-            page,
+            page: page.value,
             limit: 24,
             order_by: 'rank',
             type: 'tv'
         },
-        key: page.toString(),
+        key: page.value.toString(),
         lazy: true
     });
 
-    list.value = animeList.value.data;
+    if (!list.value.length) list.value = animeList.value.data;
+    else {
+        // location.hash = "#" + lastClickedAnime.value;
+        window.scrollTo({
+            top: lastScroll.value
+        });
+    }
 });
 </script>
 

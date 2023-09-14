@@ -1,6 +1,6 @@
 <template>
     <NuxtLink class="cursor-pointer h-full w-full" :to="`/anime/${anime.mal_id}`">
-        <li class="h-full w-full cursor-pointer transition duration-300 hover:scale-95">
+        <li :id="anime.mal_id" class="h-full w-full cursor-pointer transition duration-300 hover:scale-95">
             <header class="w-full h-[90%] relative">
                 <img class="rounded-lg w-full h-full object-cover" :src="anime.images.jpg.large_image_url" alt="animeImg"
                     loading="lazy">

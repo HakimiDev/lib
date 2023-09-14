@@ -16,6 +16,9 @@
 </template>
 
 <script setup>
+import { _lastScroll, lastScroll } from "../js/animeStore";
+lastScroll.value = _lastScroll.value;
+
 const { id } = useRoute().params;
 const url = "https://api.jikan.moe/v4/anime/" + id;
 const anime = ref({});
