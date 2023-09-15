@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 body {
-    background-color: #182128;
-    color: white;
+    background-color: #fff;
+    color: black;
     font-family: 'Alexandria', sans-serif;
     /* overflow: hidden; */
 }
