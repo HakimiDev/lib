@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="sticky z-10 min-w-full bg-[#333] border-b-[1px] border-yellow-200 rounded-b">
+        <div v-show="show" class="fixed top-[7.6rem] z-10 min-w-full bg-[#333] border-b-[1px] border-yellow-200 rounded-b">
             <div class="text-white text-sm p-2">
                 <ul class="flex flex-col gap-4">
                     <NuxtLink
@@ -73,13 +73,15 @@ const props = defineProps(['show', 'toggle']);
 .v-enter-active,
 .v-leave-active {
     transition: 0.6s ease-in-out;
-    z-index: -1000;
+    opacity: 1;
+    /* z-index: -1000; */
 }
 
 .v-enter-from,
 .v-leave-to {
     transform: translateY(-100%);
-    transition: 0.6s ease-in-out;
-    z-index: -1000;
+    transition: 0.5s ease-in-out;
+    opacity: 0;
+    /* z-index: -1000; */
 }
 </style>

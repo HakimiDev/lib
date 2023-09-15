@@ -1,5 +1,5 @@
 <template>
-    <header class="min-w-full top-0 z-20">
+    <header class="min-w-full top-0 z-20 sticky">
         <Layout class="w-full">
             <div class="w-full h-10 text-xs">
                 <div class="w-full h-full flex gap-1 justify-between items-center px-3 max-xs:px-1 sm:px-48 border-b-2">
