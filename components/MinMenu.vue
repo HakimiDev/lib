@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="fixed top-[7.6rem] z-10 min-w-full bg-[#333] border-b-[1px] border-yellow-200 rounded-b">
+        <div v-show="show" class="fixed top-[7.4rem] z-10 min-w-full bg-[#333] border-b-[1px] border-yellow-200 rounded-b">
             <div class="text-white text-sm p-2">
                 <ul class="flex flex-col gap-4">
                     <NuxtLink
