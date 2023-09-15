@@ -1,6 +1,6 @@
 <template>
     <li class="h-full max-h-80 max-w-full text-center">
-        <header class="w-full h-[85%] relative">
+        <header class="w-full h-[70%] relative">
             <img class="w-full h-full rounded-lg cursor-pointer transition duration-300 hover:scale-95" src="https://foulabook.com/storage/photo/60846.2019-02-02.1549115094.jpg"
                 alt="Book Img" loading="lazy">
             <!-- <figcaption

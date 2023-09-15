@@ -1,5 +1,5 @@
 {
-  "name": "anime-app",
+  "name": "lib",
   "private": true,
   "scripts": {
     "build": "nuxt build",
