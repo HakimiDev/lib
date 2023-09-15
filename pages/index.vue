@@ -57,8 +57,8 @@
         </section>
         <section class="p-2">
             <div>
-                <header class="relative text-xl">
-                    <h4 class="w-fit border-b-2 px-1 border-blue-500">الكتب الاكثر تحميلا</h4>
+                <header class="relative text-xl w-full">
+                    <h4 class="w-fit border-b-2 px-2 break-words border-blue-500">الكتب الاكثر تحميلا</h4>
                     <div class="h-[2px] w-full border-b-2 absolute bottom-0 -z-10"></div>
                 </header>
                 <main>

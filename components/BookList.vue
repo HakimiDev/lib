@@ -14,6 +14,5 @@
         <BookCard />
         <BookCard />
         <BookCard />
-        
     </ul>
 </template>
